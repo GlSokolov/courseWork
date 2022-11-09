@@ -5,7 +5,7 @@ public class Main {
         System.out.println();
     }
 
-    private static Employee[] employees = new Employee[10];
+    private static Employee[] employees = new Employee[11];
 
     public static void main(String[] args) {
         employees[0] = new Employee("Агафонов Николай", 1, 45_000);
@@ -13,11 +13,12 @@ public class Main {
         employees[2] = new Employee("Баязитов Ильгиз", 3, 21_000);
         employees[3] = new Employee("Казыев Рустам", 4, 39_000);
         employees[4] = new Employee("Алиев Максим", 5, 50_000);
-        employees[5] = new Employee("Соколов Глеб", 5, 57_000);
-        employees[6] = new Employee("Исламов Ильнар", 4, 22_000);
-        employees[7] = new Employee("Нуруллин Ильназ", 3, 43_000);
-        employees[8] = new Employee("Ивлиев Дмитрий", 2, 50_000);
-        employees[9] = new Employee("Ланкин Денис", 1, 50_000);
+        employees[5] = null;
+        employees[6] = new Employee("Соколов Глеб", 5, 57_000);
+        employees[7] = new Employee("Исламов Ильнар", 4, 22_000);
+        employees[8] = new Employee("Нуруллин Ильназ", 3, 43_000);
+        employees[9] = new Employee("Ивлиев Дмитрий", 2, 50_000);
+        employees[10] = new Employee("Ланкин Денис", 1, 50_000);
         printListOfEmployees();
         space();
         System.out.println(findMaxEmployeesSalary());
@@ -41,7 +42,9 @@ public class Main {
     public static int findTotalConsumption() {
         int sum = 0;
         for (int i = 0; i < employees.length; i++) {
-            sum += employees[i].getSalary();
+            if (employees[i] != null) {
+                sum += employees[i].getSalary();
+            }
         }
         return sum;
     }
@@ -51,7 +54,7 @@ public class Main {
         int salaryMax = employees[0].getSalary();
         for (int i = 0; i < employees.length; i++) {
             Employee employee = employees[i];
-            if (employee.getSalary() > salaryMax) {
+            if (employees[i] != null && employee.getSalary() > salaryMax) {
                 salaryMax = employees[i].getSalary();
                 employeeWithMaxSalary = employees[i];
             }
@@ -64,7 +67,7 @@ public class Main {
         int salaryMin = employees[0].getSalary();
         for (int i = 0; i < employees.length; i++) {
             Employee employee = employees[i];
-            if (employee.getSalary() < salaryMin) {
+            if (employees[i] != null && employee.getSalary() < salaryMin) {
                 salaryMin = employees[i].getSalary();
                 employeeWithMinSalary = employees[i];
             }
